@@ -1,0 +1,57 @@
+
+.body{
+    text-align: center;
+}
+.title{
+    font-size: 25px;
+    color:#3c3c3c ;
+    margin-bottom: 3rem;
+}
+.select{
+    width: 15rem;
+    border: none;
+    border-bottom: 1px solid #3c3c3c ;
+}
+.next,.previous,.finish{
+    border-radius: 6em;
+    background-color: #03c9a9;
+    color: white;
+    border: #03c9a9;
+    width: fit-content;
+    height: 3em;
+}
+.destinations{
+    text-align: center;
+    background-color:#03c9a9 ;
+    color: black;
+    margin-top: 3rem;
+   text-decoration: underline;
+
+}
+.list{
+    cursor: pointer;
+}
+.list:hover{
+    font-size: 16px;
+    color:blue;
+}
+.buttons{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    align-content: space-between;
+}
+.mat-icon{
+    vertical-align: middle;
+}
+.hidden{
+   visibility: hidden;
+}
+.radio{
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 2rem;
+}
+.radioButtons{
+    margin: 2px;
+}

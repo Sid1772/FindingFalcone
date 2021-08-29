@@ -1,0 +1,26 @@
+.play{
+    border-radius: 6em;
+    background-color: #03c9a9;
+    color: white;
+    border: #03c9a9;
+    width: fit-content;
+    height: 3em;
+}
+.buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.failure{
+    font-size: 1rem;
+   
+    color: red;
+}
+.success{
+    font-size: 1rem;
+   
+    color: #3c3c3c;
+}
+.body{
+    text-align: center;
+}

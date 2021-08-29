@@ -1,0 +1,23 @@
+.navbar{
+    padding-left: 2%;
+    padding-right: 2%;
+    background-color:#3c3c56; 
+    color: white;
+}
+.header{
+    text-align: center;
+    padding:2rem;
+    font-size: 50px;
+    color: #3c3c3c;
+}
+.geek{
+    color: #03c9a9;
+}
+.reset{
+    cursor: pointer;
+    font-size: 14px;
+
+}
+.home{
+    cursor: pointer;
+}

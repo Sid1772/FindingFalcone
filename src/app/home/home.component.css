@@ -1,0 +1,28 @@
+.start {
+  border-radius: 6em;
+  background-color: #03c9a9;
+  color: white;
+  border: #03c9a9;
+  width: 13rem;
+  height: 3em;
+}
+.header {
+    text-align: center;
+    padding: 2rem;
+    background: #3c3c3c;
+    color: wheat;
+}
+.text{
+    font-size: 70px;
+}
+.button{
+    display: flex;
+    
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+
+}
+.image{
+    text-align: center;
+}

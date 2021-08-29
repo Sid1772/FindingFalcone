@@ -1,0 +1,52 @@
+<app-nav (click)="reset()"></app-nav>
+<mat-spinner *ngIf="showSpin"></mat-spinner>
+<div class="main-body">
+    <div class="body">
+        <div class="title">
+            <span>Choose Destination {{ currentSelection + 1 }}</span>
+        </div>
+        <span class="error">{{ errorMessage }}</span>
+        <div>
+            <select class="select" #destination [(ngModel)]="selectedDestinations[currentSelection]">
+                <option *ngFor="let planet of planets" [disabled]="selectedDestinations.includes(planet)"
+                    [ngValue]="planet">
+                    {{ planet.name }}
+                </option>
+            </select>
+        </div>
+        <div [class.hidden]="!destination.value" class="radio">
+            <div class="radioButtons" *ngFor="let v of vehicles; let i = index">
+                <input (change)="findDistance(i)" #vehicle [disabled]="shipUsed(v, i) == 0" type="radio" [value]="v"
+                    name="vehicle" [(ngModel)]="selectedVehicles[currentSelection]" />{{ v.name }} ({{ shipUsed(v, i)
+                }})
+            </div>
+        </div>
+    </div>
+
+    <div class="buttons">
+        <button class="previous" [disabled]="currentSelection == 0" (click)="currentSelection = currentSelection - 1">
+            <mat-icon>keyboard_arrow_left</mat-icon><span>Show Previous Destination</span>
+        </button>
+        <button class="finish" (click)="findFalcone()" *ngIf="
+        currentSelection == planetsToVisit - 1 &&
+        selectedVehicles[currentSelection]
+      ">
+            <span>Find Falcon</span>e <mat-icon> person_pin_circle</mat-icon>
+        </button>
+        <button class="next" [disabled]="check()" (click)="currentSelection = currentSelection + 1">
+            <span>Choose Next Destination </span>
+            <mat-icon>keyboard_arrow_right</mat-icon>
+        </button>
+    </div>
+</div>
+<div class="destinations">
+    <div *ngFor="let x of selectedDestinations; let i = index">
+        <span class="list" (click)="currentSelection = i" *ngIf="x"><b>{{ i + 1 }}.)</b> Going to {{ x.name }} by
+            <span *ngIf="selectedVehicles[i]">{{ selectedVehicles[i].name }}</span><span *ngIf="timeTaken[i]"> and time
+                taken is {{ timeTaken[i] }}</span>
+        </span>
+    </div>
+    <div>
+        <span *ngIf="totalTime"><b>Total Time = </b> {{ totalTime }}</span>
+    </div>
+</div>
