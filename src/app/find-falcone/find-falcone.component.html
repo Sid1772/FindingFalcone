@@ -1,5 +1,6 @@
 <app-nav (click)="reset()"></app-nav>
-<mat-spinner *ngIf="showSpin"></mat-spinner>
+<div class="spin">
+<mat-spinner *ngIf="showSpin"></mat-spinner></div>
 <div class="main-body">
     <div class="body">
         <div class="title">
@@ -16,8 +17,8 @@
         </div>
         <div [class.hidden]="!destination.value" class="radio">
             <div class="radioButtons" *ngFor="let v of vehicles; let i = index">
-                <input (change)="findDistance(i)" #vehicle [disabled]="shipUsed(v, i) == 0" type="radio" [value]="v"
-                    name="vehicle" [(ngModel)]="selectedVehicles[currentSelection]" />{{ v.name }} ({{ shipUsed(v, i)
+                <input (change)="findDistance(i)" #vehicle [disabled]="shipsLeft(v, i) == 0" type="radio" [value]="v"
+                    name="vehicle" [(ngModel)]="selectedVehicles[currentSelection]" />{{ v.name }} ({{ shipsLeft(v, i)
                 }})
             </div>
         </div>

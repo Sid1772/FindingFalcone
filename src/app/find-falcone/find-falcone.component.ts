@@ -46,7 +46,7 @@ export class FindFalconeComponent implements OnInit {
     const distance = this.selectedDestinations[this.currentSelection].distance;
     const max_distance = vehicle.max_distance;
     const speed = vehicle.speed;
-    // const shipUsed=this.shipUsed( this.vehicles[this.currentSelection])
+    // const shipsLeft=this.shipsLeft( this.vehicles[this.currentSelection])
     const shipLeft = this.selectedVehicles[this.currentSelection].total_no;
     if (max_distance < distance) {
       const v = new Array<Vehicles>(this.planetsToVisit);
@@ -61,7 +61,7 @@ export class FindFalconeComponent implements OnInit {
       this.totalTime = this.findTotalTime();
     }
   }
-  shipUsed(ship: Vehicles, index: number) {
+  shipsLeft(ship: Vehicles, index: number) {
     return (
       this.vehicles[index].total_no -
       this.selectedVehicles.filter((v) => v === ship).length

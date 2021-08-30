@@ -18,3 +18,8 @@ button:disabled{
 .error{
     color: red;
 }
+.mat-progress-spinner{
+    position: absolute !important;
+    top: 35%;
+    left: 50%;
+}
