@@ -32,9 +32,13 @@ export class FindFalconeComponent implements OnInit {
   ngOnInit(): void {
     this.service.getPlanets().subscribe((planet: any) => {
       this.planets = planet;
+    },err=>{
+      this.errorMessage=err.message
     });
     this.service.getVehicles().subscribe((vehicle: any) => {
       this.vehicles = vehicle;
+    },err=>{
+      this.errorMessage=err.message
     });
   }
   findDistance(index: number) {
@@ -50,7 +54,7 @@ export class FindFalconeComponent implements OnInit {
       this.errorMessage = this.distanceBigMessage;
       setTimeout(() => {
         this.errorMessage = '';
-      }, 500);
+      }, 1000);
       return;
     } else {
       this.timeTaken[this.currentSelection] = distance / speed;
@@ -98,6 +102,9 @@ export class FindFalconeComponent implements OnInit {
       };
       this.dataService.sendData(data);
       this.router.navigate(['/result']);
+    },err=>{
+      this.errorMessage=err.message
+      this.showSpin=false
     });
   }
 }

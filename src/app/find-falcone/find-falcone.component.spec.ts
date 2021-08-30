@@ -1,4 +1,7 @@
+import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { AppConfig } from '../app.config';
 
 import { FindFalconeComponent } from './find-falcone.component';
 
@@ -8,7 +11,9 @@ describe('FindFalconeComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FindFalconeComponent ]
+      declarations: [ FindFalconeComponent ],
+      imports:[HttpClientModule,RouterTestingModule],
+      providers:[AppConfig]
     })
     .compileComponents();
   });

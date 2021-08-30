@@ -15,6 +15,9 @@ export class ResultComponent implements OnInit {
   planetName: any;
   timeTaken: any;
   showSpin = true;
+  searchData:any
+  retryCount=0
+  errorMessage=""
   constructor(
     private dataService: DataService,
     private service: GameService,
@@ -25,13 +28,13 @@ export class ResultComponent implements OnInit {
     this.dataService.data.subscribe((result: any) => {
       this.data = result;
       if (this.data) {
-        this.findFalcone();
+        this.setData()
       } else {
-        this.router.navigate(['/game']);
+        this.router.navigate(['/home']);
       }
     });
   }
-  findFalcone() {
+  setData(){
     const planets = this.data.planets.map((x: any) => x.name);
     const vehicles = this.data.vehicles.map((v: any) => v.name);
     const searchData = {
@@ -40,15 +43,33 @@ export class ResultComponent implements OnInit {
       vehicle_names: vehicles,
     };
     this.timeTaken = this.data.timeTaken;
-    this.service.findFalcone(searchData).subscribe((result: any) => {
-      if (result.error) {
-      }
+    this.searchData=searchData
+    this.findFalcone()
+  }
+  findFalcone() {
+   
+    this.service.findFalcone(this.searchData).subscribe((result: any) => {
       this.status = result.status;
       this.showSpin = false;
       if (this.status) this.planetName = result.planet_name;
+    },err=>{
+      if(err.status==400){
+        this.retryCount+=1
+        if(this.retryCount<=2)this.generateNewToken();
+        else this.errorMessage=err.message  
+      }
+      else{
+        this.errorMessage=err.message
+      }
     });
   }
   reset() {
     this.router.navigate(['/game']);
+  }
+  generateNewToken(){
+    this.service.getToken().subscribe((token:any)=>{
+      this.searchData.token=token.token
+      this.findFalcone()
+    })
   }
 }

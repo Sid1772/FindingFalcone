@@ -9,6 +9,6 @@ export class DataService {
   constructor() { }
   sendData(data:any){
   this.data.next(data)
-  console.log(data)
+
   }
 }

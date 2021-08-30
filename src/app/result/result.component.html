@@ -1,5 +1,5 @@
 <app-nav (click)="reset()"></app-nav>
-
+<div class="error"><span class="error">{{errorMessage}}</span></div>
 <div class="body " *ngIf="status">
     <mat-spinner *ngIf="showSpin"></mat-spinner>
 <span class="success">You found Falcone she was hiding on {{planetName}} ,<br>You found her in {{timeTaken}} time .<br>King Shan Would be pleased</span>
