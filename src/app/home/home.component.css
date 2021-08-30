@@ -16,11 +16,10 @@
     font-size: 70px;
 }
 .button{
-    display: flex;
-    
-    display: flex;
-    align-items: flex-end;
+   display: flex;
+    align-items: center;
     flex-direction: column;
+    margin: 3%;
 
 }
 .image{

@@ -1,15 +1,12 @@
 <app-nav (click)="reset()"></app-nav>
 <div class="error"><span class="error">{{errorMessage}}</span></div>
-<div class="body " *ngIf="status">
-    <mat-spinner *ngIf="showSpin"></mat-spinner>
+<mat-spinner *ngIf="showSpin"></mat-spinner>
+<div class="body " *ngIf="failure==false">
 <span class="success">You found Falcone she was hiding on {{planetName}} ,<br>You found her in {{timeTaken}} time .<br>King Shan Would be pleased</span>
-<div class="buttons">
-    <button  routerLink="/game" class="play">Play Again  </button>
-    <button  routerLink="/home" class="play">Home <mat-icon>home</mat-icon></button>
 </div>
-</div>
-<div class="body" *ngIf="status==false">
-    <mat-spinner *ngIf="showSpin"></mat-spinner>
+<div class="body" *ngIf="failure==true">
     <span class="failure">Oh! You couldn't find Falcone.King Shan Would be very angry </span>
-    <div class="buttons"><button routerLink="/game" class="play">Retry</button><button routerLink="/home" class="play">Home <mat-icon>home</mat-icon></button></div>
+</div>
+<div class="buttons"><button [disabled]="showSpin" routerLink="/game" class="play">Play Again</button>
+    <button routerLink="/home" [disabled]="showSpin" class="play">Home <mat-icon>home</mat-icon></button>
 </div>

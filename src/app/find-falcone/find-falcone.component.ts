@@ -16,10 +16,9 @@ export class FindFalconeComponent implements OnInit {
     private dataService: DataService,
     private router: Router
   ) {}
-  planetsToVisit = 4;
-  totalPlanets = 0;
-  planets!: Array<Planets>;
-  vehicles!: Array<Vehicles>;
+  planetsToVisit = 4;//No of planets to visit
+  planets!: Array<Planets>;//Array of planets available
+  vehicles!: Array<Vehicles>;//Array of vehicles available
   selectedDestinations = new Array<Planets>(this.planetsToVisit);
   selectedVehicles = new Array<Vehicles>(this.planetsToVisit);
   currentSelection = 0;
@@ -29,44 +28,64 @@ export class FindFalconeComponent implements OnInit {
   totalTime = 0;
   timeTaken = new Array(this.planetsToVisit);
   showSpin = false;
+  /**
+   * Gets and Sets data via Api to Arrays
+   */
   ngOnInit(): void {
-    this.service.getPlanets().subscribe((planet: any) => {
-      this.planets = planet;
-    },err=>{
-      this.errorMessage=err.message
-    });
-    this.service.getVehicles().subscribe((vehicle: any) => {
-      this.vehicles = vehicle;
-    },err=>{
-      this.errorMessage=err.message
-    });
+    this.service.getPlanets().subscribe(
+      (planet: any) => {
+        this.planets = planet;
+      },
+      (err) => {
+        this.errorMessage = err.message;
+      }
+    );
+    this.service.getVehicles().subscribe(
+      (vehicle: any) => {
+        this.vehicles = vehicle;
+      },
+      (err) => {
+        this.errorMessage = err.message;
+      }
+    );
   }
+  /**
+   * Find Distance and time Taken to selected planet via selected vehicle
+   * @param index 
+   * @returns 
+   */
   findDistance(index: number) {
+    this.errorMessage = '';
     const vehicle = this.selectedVehicles[this.currentSelection];
     const distance = this.selectedDestinations[this.currentSelection].distance;
     const max_distance = vehicle.max_distance;
     const speed = vehicle.speed;
-    // const shipsLeft=this.shipsLeft( this.vehicles[this.currentSelection])
-    const shipLeft = this.selectedVehicles[this.currentSelection].total_no;
     if (max_distance < distance) {
       const v = new Array<Vehicles>(this.planetsToVisit);
       this.selectedVehicles[this.currentSelection] = v[this.currentSelection];
       this.errorMessage = this.distanceBigMessage;
-      setTimeout(() => {
-        this.errorMessage = '';
-      }, 1000);
       return;
     } else {
       this.timeTaken[this.currentSelection] = distance / speed;
       this.totalTime = this.findTotalTime();
     }
   }
+  /**
+   * Called from Html component to find number of certain ships left 
+   * @param ship 
+   * @param index 
+   * @returns 
+   */
   shipsLeft(ship: Vehicles, index: number) {
     return (
       this.vehicles[index].total_no -
       this.selectedVehicles.filter((v) => v === ship).length
     );
   }
+  /**
+   * Called from Html to check whether to enable  or disable "Next Destination" button 
+   * @returns 
+   */
   check() {
     if (this.currentSelection + 1 >= this.planetsToVisit) return true;
     if (
@@ -76,6 +95,10 @@ export class FindFalconeComponent implements OnInit {
       return true;
     return false;
   }
+  /**
+   * Find and Return total time taken by all ships in together to visit all selected planets
+   * @returns Sum :Number
+   */
   findTotalTime() {
     var sum = 0;
     for (let i = 0; i < this.timeTaken.length; i++) {
@@ -84,6 +107,9 @@ export class FindFalconeComponent implements OnInit {
     }
     return sum;
   }
+  /**
+   * Reset the Game
+   */
   reset() {
     this.currentSelection = 0;
     this.selectedDestinations = new Array<Planets>(this.planetsToVisit);
@@ -91,20 +117,26 @@ export class FindFalconeComponent implements OnInit {
     this.timeTaken = [];
     this.totalTime = 0;
   }
+  /**
+   * Get Token and route to results page to show the result
+   */
   findFalcone() {
     this.showSpin = true;
-    this.service.getToken().subscribe((res: any) => {
-      const data = {
-        token: res.token,
-        planets: this.selectedDestinations,
-        vehicles: this.selectedVehicles,
-        timeTaken: this.totalTime,
-      };
-      this.dataService.sendData(data);
-      this.router.navigate(['/result']);
-    },err=>{
-      this.errorMessage=err.message
-      this.showSpin=false
-    });
+    this.service.getToken().subscribe(
+      (res: any) => {
+        const data = {
+          token: res.token,
+          planets: this.selectedDestinations,
+          vehicles: this.selectedVehicles,
+          timeTaken: this.totalTime,
+        };
+        this.dataService.sendData(data);
+        this.router.navigate(['/result']);
+      },
+      (err) => {
+        this.errorMessage = err.message;
+        this.showSpin = false;
+      }
+    );
   }
 }

@@ -1,6 +1,7 @@
 <app-nav (click)="reset()"></app-nav>
 <div class="spin">
-<mat-spinner *ngIf="showSpin"></mat-spinner></div>
+    <mat-spinner *ngIf="showSpin"></mat-spinner>
+</div>
 <div class="main-body">
     <div class="body">
         <div class="title">
@@ -32,7 +33,8 @@
         currentSelection == planetsToVisit - 1 &&
         selectedVehicles[currentSelection]
       ">
-            <span>Find Falcon</span>e <mat-icon> person_pin_circle</mat-icon>
+            <span>Find Falcone</span>
+            <mat-icon> person_pin_circle</mat-icon>
         </button>
         <button class="next" [disabled]="check()" (click)="currentSelection = currentSelection + 1">
             <span>Choose Next Destination </span>
@@ -40,10 +42,13 @@
         </button>
     </div>
 </div>
+<!--Clickable Links To navigate to that Destination and edit it-->
 <div class="destinations">
+    <h4 *ngIf="selectedDestinations[0]">Click to go to the particular Destination and Edit it</h4>
     <div *ngFor="let x of selectedDestinations; let i = index">
         <span class="list" (click)="currentSelection = i" *ngIf="x"><b>{{ i + 1 }}.)</b> Going to {{ x.name }} by
-            <span *ngIf="selectedVehicles[i]">{{ selectedVehicles[i].name }}</span><span *ngIf="timeTaken[i]"> and time
+            <span *ngIf="selectedVehicles[i]">{{ selectedVehicles[i].name }}</span><span *ngIf="selectedVehicles[i]">
+                and time
                 taken is {{ timeTaken[i] }}</span>
         </span>
     </div>
