@@ -22,10 +22,16 @@ button:disabled{
     position: absolute !important;
     top: 35%;
     left: 50%;
+    transform: translateX(-50%);
 }
 html{
     font-size: 16px;
 }
+@media (max-height:300px){
+    html{
+        font-size: 12px;
+    }
+    }
 @media (max-width:1050px) {
     html{
         font-size: 18px;
@@ -43,8 +49,12 @@ html{
         html{
             font-size: 8px;
         }
+        
 
-
+}
+.mat-progress-spinner circle, .mat-spinner circle {
+    stroke: #03c9a9 !important;
+    opacity: 0.5 !important;
 }
 
     
