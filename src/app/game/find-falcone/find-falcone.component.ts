@@ -1,8 +1,8 @@
 import { Component, OnInit, Output } from '@angular/core';
-import { GameService } from '../game.service';
+import { GameService } from '../../game.service';
 import { Vehicles } from './vehicle-type';
 import { Planets } from './planet-type';
-import { DataService } from '../data.service';
+import { DataService } from '../../data.service';
 import { Router } from '@angular/router';
 
 @Component({

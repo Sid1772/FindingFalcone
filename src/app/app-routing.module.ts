@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { FindFalconeComponent } from './find-falcone/find-falcone.component';
+import { FindFalconeComponent } from './game/find-falcone/find-falcone.component';
 import { HomeComponent } from './home/home.component';
-import { ResultComponent } from './result/result.component';
+import { ResultComponent } from './falcone/result/result.component';
 
 const routes: Routes = [
   {path:'game',component:FindFalconeComponent},
