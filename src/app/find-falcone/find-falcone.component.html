@@ -26,18 +26,18 @@
     </div>
 
     <div class="buttons">
-        <button class="previous" [disabled]="currentSelection == 0" (click)="currentSelection = currentSelection - 1">
-            <mat-icon>keyboard_arrow_left</mat-icon><span>Show Previous Destination</span>
+        <button title="Previous Destination" class="previous" [disabled]="currentSelection == 0" (click)="currentSelection = currentSelection - 1">
+            <mat-icon>keyboard_arrow_left</mat-icon><span class="button-text">Previous</span>
         </button>
-        <button class="finish" (click)="findFalcone()" *ngIf="
+        <button title="Find Falcone" class="finish" (click)="findFalcone()" *ngIf="
         currentSelection == planetsToVisit - 1 &&
         selectedVehicles[currentSelection]
       ">
-            <span>Find Falcone</span>
+            <span class="button-text">Find Falcone</span>
             <mat-icon> person_pin_circle</mat-icon>
         </button>
-        <button class="next" [disabled]="check()" (click)="currentSelection = currentSelection + 1">
-            <span>Choose Next Destination </span>
+        <button title="Next Destination" class="next" [disabled]="check()" (click)="currentSelection = currentSelection + 1">
+            <span class="button-text">Next</span>
             <mat-icon>keyboard_arrow_right</mat-icon>
         </button>
     </div>

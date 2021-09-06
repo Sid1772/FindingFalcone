@@ -3,7 +3,7 @@
   background-color: #03c9a9;
   color: white;
   border: #03c9a9;
-  width: 13rem;
+  width: 33vw;
   height: 3em;
 }
 .header {
@@ -13,7 +13,7 @@
     color: wheat;
 }
 .text{
-    font-size: 70px;
+    font-size: 2rem;
 }
 .button{
    display: flex;
